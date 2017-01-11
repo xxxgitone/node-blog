@@ -3,21 +3,21 @@ var router = express.Router();
 
 var checkLogin = require('../middlewares/check').checkLogin;
 
-//GET  /posts 所有用户或者特定用户的文章页
-//如： GET /post?author=xxx
+// GET /posts 所有用户或者特定用户的文章页
+//   eg: GET /posts?author=xxx
 router.get('/', function(req, res, next) {
-	res.send(req.flash());
-})
+  res.render('posts');
+});
 
 // POST /posts 发表一篇文章
-router.post('/',checkLogin, function(req, res, next){
-	res.send(req.flash());
-})
+router.post('/', checkLogin, function(req, res, next) {
+  res.send(req.flash());
+});
 
 // GET /posts/create 发表文章页
-router.post('/create',checkLogin, function(req, res, next){
-	res.send(req.flash());
-})
+router.get('/create', checkLogin, function(req, res, next) {
+  res.send(req.flash());
+});
 
 // GET /posts/:postId 单独一篇的文章页
 router.get('/:postId', function(req, res, next) {
@@ -33,7 +33,6 @@ router.get('/:postId/edit', checkLogin, function(req, res, next) {
 router.post('/:postId/edit', checkLogin, function(req, res, next) {
   res.send(req.flash());
 });
-
 
 // GET /posts/:postId/remove 删除一篇文章
 router.get('/:postId/remove', checkLogin, function(req, res, next) {
